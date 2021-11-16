@@ -67,6 +67,7 @@ public class BuilderPattern {
 
      System.out.println(builderPattern.bread);
         System.out.println(builderPattern.dressing);
+        StringBuilder builder ;
 
     }
 

@@ -21,15 +21,15 @@ public class PrototypePattern implements Cloneable{
 
     List data  = new ArrayList();
 
-    public String getName() {
+    public Test getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Test name) {
         this.name = name;
     }
 
-    String name ;
+    Test name ;
 
 
     @Override
@@ -54,12 +54,30 @@ public class PrototypePattern implements Cloneable{
     public static void main(String s[]){
         PrototypePattern firstObject = new PrototypePattern();
         firstObject.loadData();
-        firstObject.setName("Amit");
+        Test t1= new Test("Amit");
+        firstObject.setName(t1);
         firstObject.data.forEach(x->System.out.println(x));
+        System.out.println("object test name in first object: "+firstObject.name.getName());
 
         PrototypePattern secondObject = (PrototypePattern)firstObject.clone();
+        firstObject.name.setName("sharma");
         firstObject.data.add("Third");
         secondObject.data.forEach(x->System.out.println(x));
-        System.out.println(secondObject.getName());
+        System.out.println(secondObject.name.getName());
     }
+}
+
+class Test{
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public Test(String name){
+        this.name=name;
+    }
+
+    String name;
 }

@@ -1,12 +1,17 @@
 package com.creational.design.patterns;
 
+/**
+ * client will pass factory as input parameter and based on type of factory it will return type of item
+ *
+ * This pattern is used when The system consists of multiple families of objects, and these families are designed to be used together. Like computer ,animal,colors
+ *
+ * Factory pattern is used when we have just one family of objects while abstarct is used when we have multiple families of objects
+ */
 public class AbstractFactoryDesignPattern {
-    public static Computer1 getComputer(ComputerAbstractFactory factory){
-        return factory.createComputer();
-    }
+
     public static void main(String s[]){
-        Computer1 pc = getComputer(new PCFactory("2 GB","500 GB","2.4 GHz"));
-        System.out.println("AbstractFactory PC Config::"+pc);
+    AbstractFactory<Animal> provide = FactoryProvider.getFactory("Animal");
+        AbstractFactory<Computer1> provide1 = FactoryProvider.getFactory("Computer");
     }
 
 }
@@ -60,11 +65,6 @@ class PC1 extends Computer1 {
     private String hdd;
     private String cpu;
 
-    public Server1(String ram, String hdd, String cpu){
-        this.ram=ram;
-        this.hdd=hdd;
-        this.cpu=cpu;
-    }
     @Override
     public String getRAM() {
         return this.ram;
@@ -80,6 +80,12 @@ class PC1 extends Computer1 {
         return this.cpu;
     }
 
+     public Server1(String ram, String hdd, String cpu){
+         this.ram=ram;
+         this.hdd=hdd;
+         this.cpu=cpu;
+     }
+
 }
 
 /**
@@ -87,48 +93,92 @@ class PC1 extends Computer1 {
  * Notice that createComputer() method is returning an instance of super class Computer.
  * Now our factory classes will implement this interface and return their respective sub-class
  */
- interface ComputerAbstractFactory {
+ interface AbstractFactory<T> {
 
-    public Computer1 createComputer();
+    public T create(String objectType);
 
 }
 
 
-class PCFactory implements ComputerAbstractFactory {
+class ComputerFactory implements AbstractFactory<Computer1> {
 
-    private String ram;
-    private String hdd;
-    private String cpu;
 
-    public PCFactory(String ram, String hdd, String cpu){
-        this.ram=ram;
-        this.hdd=hdd;
-        this.cpu=cpu;
+
+    public ComputerFactory(){
+
     }
     @Override
-    public Computer1 createComputer() {
-        return new PC1(ram,hdd,cpu);
+    public Computer1 create(String objectType) {
+
+        if("PC".equalsIgnoreCase(objectType))
+        return new PC1("512","hdd","dual");
+        else return new Server1("512","hdd","dual");
     }
 
 }
 
- class ServerFactory implements ComputerAbstractFactory {
 
-    private String ram;
-    private String hdd;
-    private String cpu;
 
-    public ServerFactory(String ram, String hdd, String cpu){
-        this.ram=ram;
-        this.hdd=hdd;
-        this.cpu=cpu;
+//======================================Another family of objects================
+
+ interface Animal {
+    String getAnimal();
+    String makeSound();
+}
+
+ class Duck implements Animal {
+
+    @Override
+    public String getAnimal() {
+        return "Duck";
     }
 
     @Override
-    public Computer1 createComputer() {
-        return new Server1(ram,hdd,cpu);
+    public String makeSound() {
+        return "Squeks";
+    }
+}
+
+
+class Dog implements Animal {
+
+    @Override
+    public String getAnimal() {
+        return "Dog";
     }
 
+    @Override
+    public String makeSound() {
+        return "Dog";
+    }
 }
+
+//==============Another factory=================
+
+class AnimalFactory implements  AbstractFactory<Animal> {
+     @Override
+     public  Animal create(String animalType){
+         if("Duck".equalsIgnoreCase(animalType)) return new Duck();
+         else return new Dog();
+     }
+}
+
+
+ class FactoryProvider {
+    public static AbstractFactory getFactory(String choice){
+
+        if("Animal".equalsIgnoreCase(choice)){
+            return new AnimalFactory();
+        }
+        else if("Computer".equalsIgnoreCase(choice)){
+            return new ComputerFactory();
+        }
+
+        return null;
+    }
+}
+
+
+
 
 

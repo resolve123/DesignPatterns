@@ -10,7 +10,7 @@ public class SingletonDesignDemo {
         System.out.println(instance1);
 
         //inner class approach
-        SingletonDesign instance2 = SingletonDesign.getSingletonInstanceInnerClass();
+        SingletonDesign1 instance2 = SingletonDesign1.getSingletonInstanceInnerClass();
 
     }
 }

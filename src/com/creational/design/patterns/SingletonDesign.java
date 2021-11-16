@@ -7,24 +7,26 @@ package com.creational.design.patterns;
  */
 public class SingletonDesign {
 
-    private static volatile SingletonDesign  instance = null;
+    private static volatile SingletonDesign instance = null;
 
-    private SingletonDesign(){
+    private SingletonDesign() {
         // This will avoid creating instance using reflection
-if(instance != null){
-    throw new RuntimeException("Use getSingletonInstance");
-}
+        if (instance != null) {
+            throw new RuntimeException("Use getSingletonInstance");
+        }
 
     }
-public static SingletonDesign getSingletonInstance (){
-        if(instance == null){
-            synchronized (SingletonDesign.class){
-                if(instance == null){
+
+    public static SingletonDesign getSingletonInstance() {
+        if (instance == null) {
+            synchronized (SingletonDesign.class) {
+                if (instance == null) {
                     return new SingletonDesign();
                 }
             }
         }
-    return instance;
+        return instance;
+    }
 }
 
     /**
@@ -36,14 +38,16 @@ public static SingletonDesign getSingletonInstance (){
      * only when someone calls the getSingletonInstanceInnerClass method, this class gets loaded and creates the Singleton class instance.
      */
 
+    class SingletonDesign1{
 
-    public static class InnerSingleton{
-        private static final SingletonDesign singletonInstance = new SingletonDesign();
-    }
+        public static class InnerSingleton{
+          private static final SingletonDesign1 singletonInstance = new SingletonDesign1();
+       }
 
-    public static SingletonDesign getSingletonInstanceInnerClass (){
+    public static SingletonDesign1 getSingletonInstanceInnerClass (){
 
         return InnerSingleton.singletonInstance;
     }
 
 }
+
