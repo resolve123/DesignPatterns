@@ -1,7 +1,6 @@
-package com.behavioral.design.pattern;
+package com.design.pattern.behavioral;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 /**

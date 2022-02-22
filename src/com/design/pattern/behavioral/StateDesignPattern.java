@@ -1,4 +1,4 @@
-package com.behavioral.design.pattern;
+package com.design.pattern.behavioral;
 
 /**
  * State design pattern is used when an Object change its behavior based on its internal state.

@@ -1,4 +1,4 @@
-package com.behavioral.design.pattern;
+package com.design.pattern.behavioral;
 
 /**
  * The best example of interpreter design pattern is java compiler that interprets the java source code into byte code that is understandable by JVM.

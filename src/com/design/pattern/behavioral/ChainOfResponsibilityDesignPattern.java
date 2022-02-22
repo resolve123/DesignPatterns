@@ -1,4 +1,4 @@
-package com.behavioral.design.pattern;
+package com.design.pattern.behavioral;
 
 import java.util.Scanner;
 

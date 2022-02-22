@@ -1,4 +1,4 @@
-package com.behavioral.design.pattern;
+package com.design.pattern.behavioral;
 
 /**
  * This pattern provide template method which will be used by subclass as is. Like while building a house there are certain fixed steps
