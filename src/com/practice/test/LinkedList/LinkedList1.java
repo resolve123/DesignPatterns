@@ -16,7 +16,7 @@ public class LinkedList1 {
     }
     Node head;
     Node tail;
-
+int count=0;
     public  void  append(int data){
         Node n=new Node(data);
         this.tail.next= n;
@@ -115,19 +115,42 @@ public class LinkedList1 {
         return head=first;
         }
 
+public void deleteKElementFromLast(Node root,int k){
 
+    if(root.next== null){
+        System.out.println("---"+root.data);
+    return ;
+    }
+
+
+   deleteKElementFromLast(root.next,k);
+           count=count+1;
+    if(count==k) {
+        root.next = root.next.next;
+        System.out.println("count:" + count + "root.value" + root.data);
+    }
+   return;
+}
 
 
 public static void main(String s[]){
         LinkedList1 list = new LinkedList1(5);
         list.append(10);
-        list.prepend(2);
-         list. insert(1,7);
-         list.reverse1();
+       // list.prepend(2);
+        // list. insert(1,7);
+        // list.reverse1();
+    Node node =list.head;
+  /*  while(node!= null){
+        System.out.println(node.data);
+       node= node.next;
+    }*/
+    list.deleteKElementFromLast(list.head,2);
         while(list.head != null){
-            System.out.println(list.head.data);
+            System.out.println("\n"+list.head.data);
             list.head= list.head.next;
         }
+
+      //  list.deleteKElementFromLast(list.head,0);
 }
 
 }

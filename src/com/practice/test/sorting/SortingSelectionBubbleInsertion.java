@@ -17,7 +17,7 @@ public class SortingSelectionBubbleInsertion {
         }
 return array;
     }
-
+//sort from first position in 1 iteration
     public int [] selectionSort(int [] array){
         int temp;
         int index;
@@ -59,6 +59,8 @@ return array;
     public static void main(String s[]){
         int[] array =new int[]{10,7,2,15};
         int[] array1 =new int[]{11,6,1,14,2};
+String s1;
+
 
         int[] array2 =new int[]{13,8,4,14,2};
 

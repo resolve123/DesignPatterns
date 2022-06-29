@@ -17,7 +17,7 @@ public class CommandDesignPattern {
         //These are command object which execute the command
         BuyStock buyStockOrder = new BuyStock(abcStock);
         SellStock sellStockOrder = new SellStock(abcStock);
-//Broker which invikes the command
+//Broker which invokes the command
         Broker broker = new Broker();
         broker.takeOrder(buyStockOrder);
         broker.takeOrder(sellStockOrder);
